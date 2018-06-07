@@ -62,28 +62,13 @@ class BurgerBuilder extends Component {
     purchaseCancelHandler = () => {
 
         this.setState({purchaseMode: false});
+
     }
 
     purchaseContinueHandler = () => {
-        //alert('you continue! TBD');
 
+        this.props.history.push('/checkout');
 
-
-        const queryParams = [];
-
-        for(let i in this.state.ingredients) {
-            queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.ingredients[i]));
-        }
-
-        // Include the total price too
-        queryParams.push('price=' + this.state.totalPrice);
-
-        const queryString = queryParams.join('&');
-
-        this.props.history.push({
-            pathname: '/checkout',
-            search: '?' + queryString
-        });
     }
 
     render() {
@@ -138,17 +123,21 @@ class BurgerBuilder extends Component {
 }
 
 const mapStateToProps = state => {
+
     return {
         ings: state.ingredients,
         total: state.totalPrice
     };
+
 };
 
 const mapDispatchToProps = dispatch => {
+
     return {
         onIngredientAdded: (ingName) => dispatch({type: actionTypes.ADD_INGREDIENT, ingredientName: ingName }),
         onIngredientRemoved: (ingName) => dispatch({type: actionTypes.DEL_INGREDIENT, ingredientName: ingName })
     };
+
 };
 
 
