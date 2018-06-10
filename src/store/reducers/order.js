@@ -2,11 +2,18 @@ import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
     orders: [],
-    loading: false
+    loading: false,
+    purchased: false
 };
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
+        case actionTypes.PURCHASE_BURGER_INIT:
+            return {
+                ...state,
+                loading: false,
+                purchased: false
+            };
         case actionTypes.PURCHASE_BURGER_START:
             return {
                 ...state,
@@ -15,13 +22,14 @@ const reducer = (state = initialState, action) => {
         case actionTypes.PURCHASE_BURGER_SUCCESS:
             const newOrderData = {
                 ...action.orderData,
-                id: action.orderId
+                id: action.orderId,
             };
 
             return {
                 ...state,
                 loading: false,
-                orders: state.orders.concat(newOrderData)
+                orders: state.orders.concat(newOrderData),
+                purchased: true
             };
         case actionTypes.PURCHASE_BURGER_FAILED:
             return {
