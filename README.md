@@ -6,7 +6,7 @@ A fully featured React app. In development....more info upon completion:
 - Lean reducers for clean and maintainable code 
 - Some useful local state configurations for managing UI like spinners and side menus
 
-### Some important dev tools
+### Redux Dev Tool Instructions
 
 https://github.com/zalmoxisus/redux-devtools-extension#usage
 
