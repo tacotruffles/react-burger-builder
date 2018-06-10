@@ -6,12 +6,14 @@ A fully featured React app. In development....more info upon completion:
 - Lean reducers for clean and maintainable code 
 - Some useful local state configurations for managing UI like spinners and side menus
 
-### Redux Dev Tool Instructions
 
-https://github.com/zalmoxisus/redux-devtools-extension#usage
+## How to stand up this repo
 
+### First create and then a public Firebase database url to the axios-orders.js url
 
-### How to stand up this repo
+Documentation coming soon...
+
+###  Run the React app 
 
 ```shell
 git clone https://github.com/tacotruffles/react-burger-builder.git
@@ -22,4 +24,8 @@ yarn
 yarn start
 
 ```
+
+### Redux Dev Tool Instructions
+
+https://github.com/zalmoxisus/redux-devtools-extension#usage
 
