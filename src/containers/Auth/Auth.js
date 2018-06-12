@@ -89,6 +89,13 @@ class Auth extends Component {
         return isValid;
     }
 
+    // Handle the form submission
+    loginHandler = (event) => {
+
+        //event.preventDefault();
+        
+    }
+
     render() {
 
         const formElementsArray = [];
@@ -115,7 +122,7 @@ class Auth extends Component {
 
         return (
             <div className={classes.Auth}> 
-                <form>
+                <form onSubmit={this.loginHandler}>
                     {form}
                     <Button btnType="Success">SUBMIT</Button>
                 </form>
