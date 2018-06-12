@@ -11,7 +11,7 @@ A fully featured React app. In development....more info upon completion:
 
 ### First create and then a public Firebase database url to the axios-orders.js url
 
-Documentation coming soon...
+Documentation coming soon....
 
 ###  Run the React app 
 
