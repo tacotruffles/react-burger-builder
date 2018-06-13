@@ -24,10 +24,10 @@ Database Rules on Firebase
         ".read": true,
         ".write": true,	
     },
-     "orders": {
+    "orders": {
         ".read": "auth != null",
         ".write": "auth != null"
-      }
+    }
   }
 }
 ```
