@@ -15,3 +15,8 @@ export const PURCHASE_BURGER_INIT   = 'PURCHASE_BURGER_INIT';
 export const FETCH_ORDERS_START   = 'FETCH_ORDERS_START';
 export const FETCH_ORDERS_SUCCESS = 'FETCH_ORDERS_SUCCESS';
 export const FETCH_ORDERS_FAILED  = 'FETCH_ORDERS_FAILED';
+
+// Authentication Actions
+export const AUTH_START = 'AUTH_START';
+export const AUTH_SUCCESS = 'AUTH_SUCCESS';
+export const AUTH_FAILED = 'AUTH_FAILED';

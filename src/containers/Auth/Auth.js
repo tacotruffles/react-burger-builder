@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import * as actions from '../../store/actions/index';
 
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
@@ -37,7 +40,8 @@ class Auth extends Component {
                 valid: false,
                 touched: false
             },
-        }
+        },
+        isSignup: true
     }
 
     inputChangedHandler = (event, controlName) => {
@@ -92,8 +96,19 @@ class Auth extends Component {
     // Handle the form submission
     loginHandler = (event) => {
 
-        //event.preventDefault();
-        
+        event.preventDefault();
+
+        this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value, this.state.isSignup);
+
+    }
+
+    switchAuthModeHandler = () => {
+        this.setState(prevState => {
+            return {isSignup: !prevState.isSignup};
+        });
+
+        // NOTE: Is this method wrong???? It appears to work fine
+        //this.setState({isSignup: !this.state.isSignup});
     }
 
     render() {
@@ -124,11 +139,20 @@ class Auth extends Component {
             <div className={classes.Auth}> 
                 <form onSubmit={this.loginHandler}>
                     {form}
-                    <Button btnType="Success">SUBMIT</Button>
+                    <Button btnType="Success">{this.state.isSignup ? "Sign Up" : "Login"}</Button>
                 </form>
+                <Button 
+                    btnType ="Danger" 
+                    clicked={this.switchAuthModeHandler}>Switch to {this.state.isSignup ? 'Login' : 'Sign Up'}</Button>
             </div>
         );
     }
 }
 
-export default Auth;
+const mapDispatchToProps = dispatch => {
+    return {
+        onAuth: (email, password, isSignup) => dispatch(actions.auth(email, password, isSignup))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Auth);
