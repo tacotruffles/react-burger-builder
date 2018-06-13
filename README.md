@@ -10,11 +10,12 @@ A fully featured React app. In development....more info upon completion:
 
 ## How to stand up this repo
 
-### First create and then a public Firebase database url to the axios-orders.js url
-NOTE: API-KEY will be deleted soon! You'll need your own. 
-More Documentation coming soon....
+### Firebase Configuration
+NOTE: API-KEY and Firebase url twill be deleted soon! You'll need your own.
+- Url to first base is configured in axios-orders.js
+- More Documentation coming soon....
 
-Database Rules on Firebase 
+### Create a Database with the following Rules on Firebase 
 - "ingredients" table is public
 - all other tables are only accesible via authenticated users
 
