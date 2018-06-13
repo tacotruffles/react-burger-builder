@@ -23,13 +23,13 @@ export const purchaseBurgerStart = () => {
 }
 
 // Async - dispatch orderData and get order id or pass any errors thru
-export const purchaseBurger =  (orderData) => {
+export const purchaseBurger =  (orderData, token) => {
     return dispatch => {
         // Start the spinner
         dispatch(purchaseBurgerStart());
 
         // Send the order to Firebase
-        axios.post('/orders.json', orderData)
+        axios.post('/orders.json?auth=' + token, orderData)
             .then(response => {
                 dispatch(purchaseBurgerSuccess(response.data.name, orderData))
             })
@@ -66,13 +66,13 @@ export const fetchOrdersStart = () => {
     }
 };
 
-export const fetchOrders = () => {
+export const fetchOrders = (token) => {
     return dispatch => {
         // Show spinner
         dispatch(fetchOrdersStart());
 
         // Fetch or db orders
-        axios.get('/orders.json')
+        axios.get('/orders.json?auth=' + token)
             .then(res => {
                 //console.log(res);
                 const fecthedOrders = []

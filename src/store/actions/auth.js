@@ -25,6 +25,20 @@ export const authFailed = (error) => {
     }
 };
 
+export const logout = () => {
+    return {
+        type: actionTypes.AUTH_LOGOUT
+    }
+};
+
+export const checkAuthTimeout = (expirationTimeout) => {
+    return dispatch => {
+        setTimeout(() => {
+            dispatch(logout());
+        }, expirationTimeout * 1000) //Firebase passes seconds so adjust to milliseconds for setTimeout()
+    }
+}
+
 // Async code for authentication
 export const auth = (email, password, isSignup) => {
     // Thanks to Redux Thunk!
@@ -57,10 +71,11 @@ export const auth = (email, password, isSignup) => {
                 };
 
                 dispatch(authSuccess(successData));
+                dispatch(checkAuthTimeout(response.data.expiresIn));
             })
             .catch(err => {
                 console.log(err);
-                dispatch(authFailed(err));
+                dispatch(authFailed(err.response.data.error));
             });
     }
 }
