@@ -26,6 +26,12 @@ export const authFailed = (error) => {
 };
 
 export const logout = () => {
+
+    // No need for async f(x) to log out so we'll remove the locally store token and epxiration dates here
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('expirationDate');
+
     return {
         type: actionTypes.AUTH_LOGOUT
     }
@@ -69,6 +75,14 @@ export const auth = (email, password, isSignup) => {
                     userId: response.data.localId,
                     idToken: response.data.idToken
                 };
+                
+                // Calculate Expiration Date
+                const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
+
+                // Store the token locally
+                localStorage.setItem('token', response.data.idToken);
+                localStorage.setItem('userId', response.data.localId);
+                localStorage.setItem('expirationDate', expirationDate);
 
                 dispatch(authSuccess(successData));
                 dispatch(checkAuthTimeout(response.data.expiresIn));
@@ -77,5 +91,37 @@ export const auth = (email, password, isSignup) => {
                 console.log(err);
                 dispatch(authFailed(err.response.data.error));
             });
+    }
+};
+
+export const setAuthRedirectPath = (redirectPath) => {
+    return {
+        type: actionTypes.AUTH_SET_REDIRECT_PATH,
+        path: redirectPath
+    }
+}
+
+export const authCheckAuthentication = () => {
+    return dispatch => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            dispatch(logout());
+        } else {
+            const expirationDate = new Date(localStorage.getItem('expirationDate'));
+
+            if(expirationDate <= new Date ()) {
+                dispatch(logout());
+            } else {
+                const userId = localStorage.getItem('userId');
+
+                const authData = {
+                    idToken: token,
+                    userId: userId
+                }
+
+                dispatch(authSuccess(authData));
+                dispatch(checkAuthTimeout((expirationDate.getTime() - new Date().getTime())/ 1000));
+            }
+        }
     }
 }
