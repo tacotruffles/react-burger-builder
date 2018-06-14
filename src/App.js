@@ -31,6 +31,11 @@ class App extends Component {
             <Route path="/checkout" component={Checkout}/>
             <Route path="/orders" component={Orders}/>
             <Route path="/logout" component={Logout}/>
+             {/* NOTE: Keep Auth Route below cause redirect to checkout is done there. 
+                 Removing the below line will cause the Redirect to "/" below to kick in, 
+                 thus preventing forwarding to the checkout page when peforming a login/signup 
+                 while building a burger  */}
+            <Route path="/auth" component={Auth}/> 
             <Route path="/" exact component={BurgerBuilder}/>
             <Redirect to="/" />
         </Switch>
