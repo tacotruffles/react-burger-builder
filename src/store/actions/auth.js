@@ -70,7 +70,7 @@ export const auth = (email, password, isSignup) => {
 
         axios.post(authUrl, authData)
             .then(response => {
-                console.log(response);
+                console.log('[AUTH ACTIon]: ', response);
                 const successData = {
                     userId: response.data.localId,
                     idToken: response.data.idToken
