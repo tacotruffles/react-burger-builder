@@ -6,6 +6,7 @@ A fully featured React app. In development....more info upon completion:
 - Lean reducers for clean and maintainable code 
 - Some useful local state configurations for managing UI like spinners and side menus
 - JWT Authentication for guarded enpoints
+- Lazy loading for components (Orders, Auth, Checkout) for faster loading of necessary core components
 
 
 ## How to stand up this repo
