@@ -50,7 +50,7 @@ export const auth = (email, password, isSignup) => {
     // Thanks to Redux Thunk!
     return dispatch => {
 
-        console.log('email: %s \n password: %s \n signup? %s', email, password, isSignup);
+        //console.log('email: %s \n password: %s \n signup? %s', email, password, isSignup);
         // Start spinner
         dispatch(authStart());
 
@@ -70,7 +70,7 @@ export const auth = (email, password, isSignup) => {
 
         axios.post(authUrl, authData)
             .then(response => {
-                console.log('[AUTH ACTIon]: ', response);
+                //console.log('[AUTH ACTIon]: ', response);
                 const successData = {
                     userId: response.data.localId,
                     idToken: response.data.idToken
@@ -88,7 +88,7 @@ export const auth = (email, password, isSignup) => {
                 dispatch(checkAuthTimeout(response.data.expiresIn));
             })
             .catch(err => {
-                console.log(err);
+                //console.log(err);
                 dispatch(authFailed(err.response.data.error));
             });
     }
