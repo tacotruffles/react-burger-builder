@@ -66,13 +66,14 @@ export const fetchOrdersStart = () => {
     }
 };
 
-export const fetchOrders = (token) => {
+export const fetchOrders = (token, userId) => {
     return dispatch => {
         // Show spinner
         dispatch(fetchOrdersStart());
 
+        const queryParams = "?auth=" + token + '&orderBy="userId"&equalTo="' + userId + '"';
         // Fetch or db orders
-        axios.get('/orders.json?auth=' + token)
+        axios.get('/orders.json' + queryParams)
             .then(res => {
                 //console.log(res);
                 const fecthedOrders = []

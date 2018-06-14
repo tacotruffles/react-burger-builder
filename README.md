@@ -18,6 +18,7 @@ NOTE: API-KEY and Firebase url twill be deleted soon! You'll need your own.
 ### Create a Database with the following Rules on Firebase 
 - "ingredients" table is public
 - all other tables are only accesible via authenticated users
+- "orders" table needs an index so we can fetch by userId
 
 ```
 {
@@ -26,10 +27,11 @@ NOTE: API-KEY and Firebase url twill be deleted soon! You'll need your own.
         ".read": true,
         ".write": true,	
     },
-    "orders": {
+     "orders": {
         ".read": "auth != null",
-        ".write": "auth != null"
-    }
+        ".write": "auth != null",
+        ".indexOn": ["userId"]
+      }
   }
 }
 ```
