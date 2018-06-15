@@ -13,7 +13,7 @@ import axios from '../../axios-orders';
 //import * as burgerBuilderActions from '../../store/actions/';
 import * as actions from "../../store/actions";
 
-class BurgerBuilder extends Component {
+export class BurgerBuilder extends Component {
 
     // constructor(props) {
     //     super(props);
@@ -98,7 +98,7 @@ class BurgerBuilder extends Component {
 
             orderSummary = <OrderSummary
                 ingredients={this.props.ings}
-                price={this.props.total.toFixed(2)}
+                price={this.props.total} //.toFixed(2)
                 purchaseCancelled={this.purchaseCancelHandler}
                 purchaseContinued={this.purchaseContinueHandler}/>
         }
