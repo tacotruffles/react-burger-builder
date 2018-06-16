@@ -56,10 +56,10 @@ export const auth = (email, password, isSignup) => {
 
         // ... authetnicate user here
         // See Firbase docs: https://firebase.google.com/docs/reference/rest/auth/#section-create-email-password
-        let authUrl = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyBJDYKIuUr7JV64R3pkD7FCMFHnCW-KnWk'
+        let authUrl = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=' + process.env.REACT_APP_FIREBASE_API_KEY
 
         if(!isSignup) {
-            authUrl = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyBJDYKIuUr7JV64R3pkD7FCMFHnCW-KnWk';
+            authUrl = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=' + process.env.REACT_APP_FIREBASE_API_KEY;
         }
         
         const authData = {
